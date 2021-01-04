@@ -1,0 +1,10 @@
+server:
+  port: ${PORT:8080}
+  tomcat:
+    max-connections: 200
+
+redis:
+  hostname: ${REDIS_HOSTNAME:localhost}
+  port: ${REDIS_PORT:6379}
+  expiry: ${REDIS_CACHE_EXPIRY_TIME_IN_SECONDS:5}
+  capacity: ${REDIS_KEY_CAPACITY:10}

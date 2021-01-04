@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  redis:
+    image: redis:alpine
+    ports:
+      - '6379:6379'
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8080:8080'
+      - "8000:8000"
+    environment:
+      - PORT=8080
+      - REDIS_HOSTNAME=redis
+      - REDIS_PORT=6379
+      - REDIS_CACHE_EXPIRY_TIME_IN_SECONDS=5
+      - REDIS_KEY_CAPACITY=10
+    depends_on:
+      - redis

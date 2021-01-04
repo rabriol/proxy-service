@@ -1,0 +1,33 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.1'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+}
+
+group = 'com.segment'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'redis.clients:jedis'
+	implementation 'com.google.guava:guava:28.0-jre'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation "io.rest-assured:rest-assured"
+	testImplementation "org.testcontainers:junit-jupiter:1.15.1"
+}
+
+test {
+	testLogging {
+		events "passed", "skipped", "failed", "standardOut"
+	}
+
+	outputs.upToDateWhen { false }
+
+	useJUnitPlatform()
+}
